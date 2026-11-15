@@ -1,11 +1,11 @@
-# 🌳 Folder Tree Explorer
+# 🌳 Foldex – Folder Tree Explorer
 
 [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
 [![Platform](https://img.shields.io/badge/Platform-Windows-0078d7.svg?style=flat&logo=windows)](https://microsoft.com/windows)
 [![Electron](https://img.shields.io/badge/Electron-42.3.2-47848F?logo=electron)](https://www.electronjs.org/)
 [![PowerShell](https://img.shields.io/badge/PowerShell-Watcher-5391FE?logo=powershell)](https://github.com/PowerShell/PowerShell)
 
-**Folder Tree Explorer** is a modern Windows desktop application built with Electron that enhances the file management experience with a powerful folder tree, advanced filtering, file previews, and a unique **Smart Explorer Sidebar** that integrates directly with Windows File Explorer.
+**Foldex** is a modern Windows desktop application built with Electron that enhances the file management experience with a powerful folder tree, advanced filtering, file previews, and a unique **Smart Explorer Sidebar** that integrates directly with Windows File Explorer.
 
 ---
 
@@ -21,9 +21,9 @@ Common limitations include:
 - Frequently used folders are difficult to organize inside Explorer.
 - There is no native way to attach a customizable folder tree beside File Explorer.
 
-**Folder Tree Explorer improves this workflow by providing a powerful browsing environment while keeping the familiar Windows Explorer experience.**
+**Foldex improves this workflow by providing a powerful browsing environment while keeping the familiar Windows Explorer experience.**
 
-| Windows File Explorer | Folder Tree Explorer |
+| Windows File Explorer | Foldex |
 | --------------------- | -------------------- |
 | Basic folder navigation | Advanced hierarchical folder tree |
 | Limited sorting and filtering | Flexible sorting and filtering options |
@@ -32,7 +32,7 @@ Common limitations include:
 | Fixed navigation layout | Customizable workspace |
 | No companion sidebar | Smart Explorer Sidebar integration |
 
-Folder Tree Explorer is not designed to replace Windows File Explorer. Instead, it works as a productivity companion that extends its capabilities.
+Foldex is not designed to replace Windows File Explorer. Instead, it works as a productivity companion that extends its capabilities.
 
 ---
 
@@ -74,7 +74,7 @@ Supported file types:
 
 # 🪟 Smart Explorer Sidebar
 
-The **Smart Explorer Sidebar** is the key feature that differentiates Folder Tree Explorer from traditional file managers.
+The **Smart Explorer Sidebar** is the key feature that differentiates Foldex from traditional file managers.
 
 It creates a docked sidebar next to the active Windows File Explorer window and keeps the folder structure synchronized automatically.
 
@@ -97,7 +97,7 @@ It creates a docked sidebar next to the active Windows File Explorer window and 
 
 # 🏗️ System Architecture
 
-Folder Tree Explorer uses Electron's multi-process architecture combined with Windows system APIs for Explorer integration.
+Foldex uses Electron's multi-process architecture combined with Windows system APIs for Explorer integration.
 
 ```mermaid
 graph TD
@@ -224,7 +224,7 @@ When Smart Sidebar mode is disabled:
 2. Download:
 
 ```
-Folder Tree Explorer-Setup-x.x.x.exe
+Foldex-Setup-x.x.x.exe
 ```
 
 3. Run the installer.
@@ -325,7 +325,7 @@ No external configuration files are required.
 
 # 🔒 Privacy
 
-Folder Tree Explorer operates completely locally.
+Foldex operates completely locally.
 
 - No account required
 - No cloud services

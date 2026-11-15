@@ -61,7 +61,7 @@ function createApp({ openPath = async () => "" } = {}) {
       if (name === "electron") return {
         app, BrowserWindow: Window,
         ipcMain: { handle: (name, fn) => { handlers[name] = fn; }, on: (name, fn) => { handlers[name] = fn; } },
-        shell: { openPath }, screen,
+        shell: { openPath }, screen, nativeTheme: { themeSource: "system" },
         dialog: { showErrorBox: (...args) => dialogs.push(args) }, Menu: { setApplicationMenu() {} }
       };
       if (name === "child_process") return { spawn() {

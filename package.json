@@ -12,8 +12,8 @@
   },
   "build": {
     "appId": "com.foldertree.app",
-    "productName": "Folder Tree Explorer",
-    "executableName": "FolderTreeExplorer",
+    "productName": "Foldex",
+    "executableName": "Foldex",
     "copyright": "Copyright © 2026 D. Muhandiram",
     "directories": {
       "output": "release"
@@ -41,7 +41,7 @@
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "shortcutName": "Folder Tree Explorer",
+      "shortcutName": "Foldex",
       "installerIcon": "assets/icon.ico",
       "uninstallerIcon": "assets/icon.ico",
       "installerHeaderIcon": "assets/icon.ico",

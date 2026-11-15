@@ -6,7 +6,8 @@ const {
   dialog,
   Menu,
   shell,
-  screen
+  screen,
+  nativeTheme
 } = require("electron");
 // import path module (used for file paths)
 const path = require("path");
@@ -354,6 +355,8 @@ ipcMain.on(
 
 ipcMain.on("theme-changed", (event, theme) => {
   if (!isTrustedSender(event, true) || !["light", "dark"].includes(theme)) return;
+  // The native Windows title bar follows nativeTheme, not the page's CSS.
+  nativeTheme.themeSource = theme;
   if (sidebarWindow && !sidebarWindow.isDestroyed()) {
     sidebarWindow.webContents.send("theme-updated", theme);
   }

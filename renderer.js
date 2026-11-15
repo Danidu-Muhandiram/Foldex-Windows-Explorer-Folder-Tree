@@ -12,16 +12,32 @@ const activeScans = new Map();
 let nextScanId = 0;
 let lastRequestedRoot = null;
 
+// The status bar sits above the tree, so showing it shifts the whole layout.
+// Only reveal it for scans that are still running after a short delay.
+const SCAN_BAR_DELAY_MS = 400;
+let scanBarTimer = null;
+let scanBarReady = false;
+
 function scanCancelled(error) { return /Scan cancelled|Folder changed/.test(error.message || ""); }
+function runningScans() { return [...activeScans.values()].filter(job => !job.cancelled); }
 function updateScanStatus(message = "") {
   const bar = $("scan-status");
   if (!bar) return;
-  const jobs = [...activeScans.values()].filter(job => !job.cancelled);
-  bar.hidden = !jobs.length && !message;
-  $("scan-progress").hidden = !jobs.length;
-  $("cancel-scan-btn").hidden = !jobs.length;
+  const jobs = runningScans();
+  if (!jobs.length) scanBarReady = false;
+  else if (!bar.hidden) scanBarReady = true; // already visible: switch to progress without hiding
+  else if (!scanBarReady && !scanBarTimer) {
+    scanBarTimer = setTimeout(() => {
+      scanBarTimer = null;
+      if (runningScans().length) { scanBarReady = true; updateScanStatus(); }
+    }, SCAN_BAR_DELAY_MS);
+  }
+  const showJobs = jobs.length > 0 && scanBarReady;
+  bar.hidden = !showJobs && !message;
+  $("scan-progress").hidden = !showJobs;
+  $("cancel-scan-btn").hidden = !showJobs;
   const checked = jobs.reduce((sum, job) => sum + (job.scanned || 0), 0);
-  $("scan-message").textContent = jobs.length ? `Checking ${checked.toLocaleString()} entries…` : message;
+  $("scan-message").textContent = showJobs ? `Checking ${checked.toLocaleString()} entries…` : message;
   $("scan-message").title = jobs.at(-1)?.currentPath || "";
   treeContainer.setAttribute("aria-busy", String(jobs.length > 0));
 }
@@ -227,9 +243,13 @@ async function buildTreeNode(entry, version) {
     const load = async () => {
       if (loaded || loading) return;
       loading = true;
-      children.replaceChildren(node("p", "status-message", "Loading..."));
+      // Delay the placeholder so fast folders open without a flash of "Loading...".
+      let showPlaceholder = true;
+      children.replaceChildren();
+      setTimeout(() => { if (showPlaceholder) children.replaceChildren(node("p", "status-message", "Loading...")); }, 200);
       try {
         await withScan("readDirectory", [entry.path, options()], async (entries, job) => {
+          showPlaceholder = false;
           children.replaceChildren();
           for (let index = 0; index < entries.length; index++) {
             if (job.cancelled || version !== treeVersion) throw new Error("Scan cancelled");
@@ -240,8 +260,8 @@ async function buildTreeNode(entry, version) {
           if (!entries.length) children.append(node("p", "status-message", options().filter === "all" ? "This folder is empty." : "No files match the selected filter."));
           loaded = true;
         });
-      } catch (error) { if (version === treeVersion) showError(children, error, load); }
-      finally { loading = false; }
+      } catch (error) { showPlaceholder = false; if (version === treeVersion) showError(children, error, load); }
+      finally { showPlaceholder = false; loading = false; }
     };
     const expand = expanded => {
       item.classList.toggle("expanded", expanded);
@@ -399,7 +419,11 @@ function initSettings() {
   const savedTheme = localStorage.getItem("theme");
   const theme = savedTheme === "light" ? "light" : "dark";
   document.body.setAttribute("data-theme", theme);
-  if ($("theme-select")) $("theme-select").value = theme;
+  if ($("theme-select")) {
+    $("theme-select").value = theme;
+    // Sync the native title bar with the saved theme on startup (main window only).
+    api.setTheme?.(theme);
+  }
   pinnedFolders = [];
   try {
     const saved = JSON.parse(localStorage.getItem("pinnedFolders"));

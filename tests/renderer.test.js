@@ -181,6 +181,10 @@ test("Cancel button stops a pending scan and permits a retry without stale rows"
   const loading = key(root, "ArrowRight");
   await new Promise(resolve => setImmediate(resolve));
   progress({ requestId, scanned: 42, skipped: 0 });
+  // The status bar stays hidden for quick scans so the layout does not jump.
+  assert.equal(fixture.elements["scan-status"].hidden, true);
+  await new Promise(resolve => setTimeout(resolve, 450));
+  assert.equal(fixture.elements["scan-status"].hidden, false);
   assert.match(fixture.elements["scan-message"].textContent, /42/);
   fixture.elements["cancel-scan-btn"].handlers.click({ type: "click" });
   await loading;
