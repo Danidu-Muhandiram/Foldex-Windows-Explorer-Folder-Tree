@@ -3,7 +3,7 @@
 [![Version](https://img.shields.io/badge/Version-1.0.1-2ea44f.svg)](#-versions)
 [![Platform](https://img.shields.io/badge/Platform-Windows%2010%20%7C%2011-0078d7.svg?logo=windows)](#-system-requirements)
 [![Electron](https://img.shields.io/badge/Electron-42-47848F?logo=electron)](https://www.electronjs.org/)
-[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](#-license)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 
 **Foldex is a small Windows app that shows any folder as a clear, expandable tree, so you can find your files without opening folder after folder.**
 
@@ -499,6 +499,14 @@ Pull requests are welcome. Please run `npm test` before sending one.
 
 ## 📄 License
 
-This project is released under the **ISC License** (see `package.json`).
+Foldex is free and open-source software, released under the **GNU General Public License v3.0 (GPL-3.0)**.
+
+In simple words:
+- ✅ You can use Foldex for free, for personal or commercial work.
+- ✅ You can read, change and share the code.
+- 📢 If you share a changed version, you must also share its source code under the same GPL-3.0 license and keep the copyright notice.
+- ⚠️ Foldex comes **"as is", without any warranty**. The author is not responsible for any problems that may happen from using it.
+
+See the [LICENSE](LICENSE) file for the full license text.
 
 Copyright © 2026 **D. Muhandiram**
