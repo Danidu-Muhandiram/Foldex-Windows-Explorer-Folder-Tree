@@ -370,6 +370,10 @@ async function scanResult(request) {
     throw error;
   }
 }
+ipcMain.handle("get-app-version", event => {
+  requireTrustedSender(event, true);
+  return app.getVersion();
+});
 ipcMain.handle("browse-root", (event, value, showSize = false, requestId = null) => {
   requireTrustedSender(event);
   return scanResult(fileSessions.get(event.sender).openRoot(value, showSize, requestId));

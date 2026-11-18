@@ -464,6 +464,9 @@ document.addEventListener("keydown", event => {
 });
 initSettings();
 initPreviewLayout();
+if ($("app-credit")) {
+  api.getVersion?.().then(version => { $("app-credit").textContent = `Foldex v${version} · by D. Muhandiram`; }).catch(() => {});
+}
 window.openRootFolder = openRootFolder;
 
 function initPreviewLayout() {

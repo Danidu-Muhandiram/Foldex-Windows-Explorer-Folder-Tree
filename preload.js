@@ -15,6 +15,7 @@ async function scan(channel, ...args) {
 }
 contextBridge.exposeInMainWorld("folderTree", {
   selectFolder: () => ipcRenderer.invoke("select-folder"),
+  getVersion: () => ipcRenderer.invoke("get-app-version"),
   openRoot: (value, showSize = false, requestId = null) => scan("browse-root", value, showSize, requestId),
   readDirectory: (value, options, requestId = null) => scan("read-directory", value, options, requestId),
   cancelScan: (requestId = null) => ipcRenderer.invoke("cancel-scan", requestId),

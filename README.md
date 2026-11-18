@@ -121,6 +121,7 @@ Click a file to see its full path, size and modified date, plus a preview:
 ### 🎨 Look and feel
 - **Light** and **Dark** themes (the Windows title bar follows the theme too).
 - Clean layout with the Poppins font and file-type icons.
+- The current version number is shown at the bottom of the left panel.
 
 ### ⌨️ Keyboard friendly
 See [Keyboard shortcuts](#keyboard-shortcuts).
@@ -178,7 +179,14 @@ Because Foldex is a free project and the installer is **not code-signed** (signi
 
 > Only do this if you downloaded the file from this project's official GitHub page. If you want to be 100% sure, build it yourself from the source code.
 
-### Step 3 – Choose who to install for
+### Step 3 – Accept the license
+The installer shows the **GNU GPL v3.0** license. It explains what you can do with Foldex and that it comes without any warranty. Read it, then click **I Agree**.
+
+<p align="center">
+  <img src="assets/preview/license-preview.jpg" alt="License agreement page" width="520">
+</p>
+
+### Step 4 – Choose who to install for
 The installer asks **who should be able to use Foldex**:
 
 - **Only for me** *(recommended)* – installs just for your Windows user. No admin password needed.
@@ -186,7 +194,7 @@ The installer asks **who should be able to use Foldex**:
 
 Click **Next**.
 
-### Step 4 – Choose the install folder
+### Step 5 – Choose the install folder
 The default folder is fine for most people:
 `C:\Users\<you>\AppData\Local\Programs\Foldex`
 
@@ -196,14 +204,14 @@ Click **Browse...** if you want a different place, then click **Install**.
   <img src="assets/preview/install-1.jpg" alt="Choose install location" width="520">
 </p>
 
-### Step 5 – Wait for the install to finish
+### Step 6 – Wait for the install to finish
 This takes a few seconds.
 
 <p align="center">
   <img src="assets/preview/install-2.jpg" alt="Installing" width="520">
 </p>
 
-### Step 6 – Finish
+### Step 7 – Finish
 Leave **Run Foldex** ticked if you want to open it right away, then click **Finish**.
 
 <p align="center">
@@ -460,6 +468,9 @@ The installer is created at `release/Foldex-Setup-<version>.exe`.
 - The Windows title bar now follows the light/dark theme.
 - Smoother folder expanding – no more screen jump while a folder loads.
 - Installing Foldex automatically replaces the older "Folder Tree Explorer" app.
+- Now released under the **GNU GPL v3.0** license.
+- The installer shows the license agreement before installing.
+- The app version is shown at the bottom of the left panel.
 
 ### 1.0.0
 First release, as **Folder Tree Explorer**:
